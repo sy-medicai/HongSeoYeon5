@@ -15,9 +15,8 @@ st.title("🌞 Prophet Forecast with Preprocessed Sunspot Data")
 # [1] 데이터 불러오기
 # ----------------------------------
 # TODO: 'sunspots_for_prophet.csv' 파일을 불러오고, 'ds' 컬럼을 datetime 형식으로 변환하세요.
-'''코드를 작성하시오'''
 
-df = pd.read_csv("data/sunspots.csv")
+df = pd.read_csv(".data/sunspots.csv")
 df["ds"] = pd.to_datetime(df["ds"])
 
 
@@ -29,7 +28,6 @@ st.dataframe(df.head())
 # [2] Prophet 모델 정의 및 학습
 # ----------------------------------
 # TODO: Prophet 모델을 생성하고, 11년 주기 커스텀 seasonality를 추가한 후 학습하세요.
-'''코드를 작성하시오'''
 model = Prophet(yearly_seasonality=False)
 model.add_seasonality(name="sunspot_cycle", period=11, fourier_order=6)
 model.fit(df)
@@ -38,7 +36,6 @@ model.fit(df)
 # [3] 예측 수행
 # ----------------------------------
 # TODO: 30년간 연 단위 예측을 수행하고, 결과를 forecast에 저장하세요.
-'''코드를 작성하시오'''
 future = model.make_future_dataframe(periods=30, freq="Y")
 forecast = model.predict(future)
 
@@ -47,13 +44,11 @@ forecast = model.predict(future)
 # ----------------------------------
 st.subheader("📈 Prophet Forecast Plot")
 # TODO: model.plot()을 사용하여 예측 결과를 시각화하세요.
-'''코드를 작성하시오'''
 fig1 = model.plot(forecast)
 st.pyplot(fig1)
 
 st.subheader("📊 Forecast Components")
 # TODO: model.plot_components()를 사용하여 구성요소를 시각화하세요.
-'''코드를 작성하시오'''
 fig2 = model.plot_components(forecast)
 st.pyplot(fig2)
 
@@ -65,7 +60,6 @@ st.subheader("📉 Custom Plot: Actual vs Predicted with Prediction Intervals")
 # TODO: 실제값, 예측값, 신뢰구간을 하나의 plot에 시각화하세요.
 fig3, ax = plt.subplots(figsize=(14, 6))
 
-'''코드를 작성하시오'''
 # 힌트:
 # ax.plot(df["ds"], df["y"], ...)
 # ax.plot(forecast["ds"], forecast["yhat"], ...)
@@ -95,7 +89,6 @@ merged["residual"] = merged["y"] - merged["yhat"]
 # TODO: residual 시계열을 시각화하세요.
 fig4, ax2 = plt.subplots(figsize=(14, 4))
 
-'''코드를 작성하시오'''
 # 힌트:
 # ax2.plot(merged["ds"], merged["residual"], ...)
 # ax2.axhline(0, ...)
@@ -114,6 +107,5 @@ st.pyplot(fig4)
 # ----------------------------------
 st.subheader("📌 Residual Summary Statistics")
 # TODO: merged["residual"].describe()를 출력하세요.
-'''코드를 작성하시오'''
 st.subheader("📌 Residual Summary Statistics")
 st.write(merged["residual"].describe())
