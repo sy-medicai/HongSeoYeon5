@@ -81,7 +81,6 @@ st.pyplot(fig3)
 st.subheader("📉 Residual Analysis (예측 오차 분석)")
 
 # TODO: df와 forecast를 'ds' 기준으로 병합하여 residual 컬럼을 생성하세요.
-'''코드를 작성하시오'''
 merged = pd.merge(df, forecast[["ds", "yhat"]], on="ds", how="left")
 merged["residual"] = merged["y"] - merged["yhat"]
 
@@ -106,5 +105,4 @@ st.pyplot(fig4)
 # ----------------------------------
 st.subheader("📌 Residual Summary Statistics")
 # TODO: merged["residual"].describe()를 출력하세요.
-st.subheader("📌 Residual Summary Statistics")
 st.write(merged["residual"].describe())
