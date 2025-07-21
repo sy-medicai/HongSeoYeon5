@@ -17,7 +17,7 @@ st.title("🌞 Prophet Forecast with Preprocessed Sunspot Data")
 # TODO: 'sunspots_for_prophet.csv' 파일을 불러오고, 'ds' 컬럼을 datetime 형식으로 변환하세요.
 '''코드를 작성하시오'''
 
-df = pd.read_csv("/content/drive/MyDrive/phyton/sunspots_for_prophet.csv")
+df = pd.read_csv("data/sunspots.csv")
 df["ds"] = pd.to_datetime(df["ds"])
 
 
